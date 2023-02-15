@@ -3,17 +3,19 @@ package com.springboot.crudoperation.entity;
 import org.hibernate.annotations.Columns;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
-@Table(name="unit")
+@Table(name = "unit")
 public class Unit {
     @Id
     @GeneratedValue
-    @Column(name="unit_id")
+    @Column(name = "unit_id")
     private Integer unitId;
 
-    @Column(name="unit_name")
+    @Column(name = "unit_name")
     private String unitName;
+
 
     public Integer getUnitId() {
         return unitId;
@@ -31,12 +33,20 @@ public class Unit {
         this.unitName = unitName;
     }
 
-    public Unit(Integer unitId, String unitName) {
-        this.unitId = unitId;
-        this.unitName = unitName;
-    }
 
-    public Unit(){
+    //    public Unit(Integer unitId, String unitName) {
+//        this.unitId = unitId;
+//        this.unitName = unitName;
+//    }
 
-    }
+
+//    public Unit(Integer unitId, String unitName) {
+//        this.unitId = unitId;
+//        this.unitName = unitName;
+//
+//    }
+//
+//    public Unit() {
+//
+//    }
 }

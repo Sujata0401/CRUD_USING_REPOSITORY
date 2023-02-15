@@ -1,21 +1,27 @@
 package com.springboot.crudoperation.entity;
 
+import org.apache.tomcat.jni.Address;
+
 import javax.persistence.*;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
-@Table(name="product")
+@Table(name = "product")
 public class Product {
     @Id
     @GeneratedValue
-    @Column(name="product_id")
+    @Column(name = "product_id")
     private Integer productId;
 
-    @Column(name="product_name",nullable = false)
+    @Column(name = "product_name", nullable = false)
     private String productName;
-    @Column(name="product_rate",nullable = true)
+    @Column(name = "product_rate")
     private Integer productRate;
-    @Column(name="unit_id" ,nullable=false)
-    private Integer unitId;
+    @OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "pk_product_id", referencedColumnName = "product_id")
+    private List<Unit> unit = new ArrayList<>();
 
     public Integer getProductId() {
         return productId;
@@ -41,21 +47,32 @@ public class Product {
         this.productRate = productRate;
     }
 
-    public Integer getUnitId() {
-        return unitId;
+    public List<Unit> getUnit() {
+        return unit;
     }
 
-    public void setUnitId(Integer unitId) {
-        this.unitId = unitId;
+    public void setUnit(List<Unit> unit) {
+        this.unit = unit;
     }
 
-    public Product(Integer productId, String productName, Integer productRate, Integer unitId) {
+//    public Product(Integer productId, String productName, Integer productRate, List<Unit> unit) {
+//        this.productId = productId;
+//        this.productName = productName;
+//        this.productRate = productRate;
+//        this.unit = unit;
+//    }
+
+    public Product() {
+    }
+
+    public Product(Integer productId, String productName, Integer productRate) {
         this.productId = productId;
         this.productName = productName;
         this.productRate = productRate;
-        this.unitId = unitId;
     }
-    public  Product(){
 
+    public Product(String productName, Integer productRate) {
+        this.productName = productName;
+        this.productRate = productRate;
     }
 }
