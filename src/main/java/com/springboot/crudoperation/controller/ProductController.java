@@ -6,15 +6,16 @@ import com.springboot.crudoperation.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.SQLException;
 import java.util.List;
 
 @RestController
-//@RequestMapping(value="/api")
+@RequestMapping(value="/api")
 public class ProductController {
     @Autowired
     ProductService productService;
     @PostMapping(value="/saveproduct")
-    public Product saveProduct(@RequestBody Product product){
+    public Product saveProduct(@RequestBody Product product) {
         return productService.saveProduct(product);
     }
 
